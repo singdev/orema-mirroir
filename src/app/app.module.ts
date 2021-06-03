@@ -16,6 +16,7 @@ import { GeolocalisationComponent } from './pages/geolocalisation/geolocalisatio
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

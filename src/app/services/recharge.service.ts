@@ -16,7 +16,6 @@ export class RechargeService {
   
   requestRecharge(montant: number, token: number): Observable<RechargeResult> {
     const r = Math.floor(Math.random() * 100);
-    console.log(r);
     const success = r % 2 == 0;
     const message = success ? "Token accepté" : "Token invalide";
     if(success){

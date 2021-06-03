@@ -1,1 +1,23 @@
-<p>puissance works!</p>
+<div class="puissance-wrapper">
+  <div class="window-header">
+    <h1 class="window-title">Modifier la puissance</h1>
+  </div>
+  <div class="window-content">
+    <h2>Puissance actuel <span>{{puissance}} Kwh</span></h2>
+    <p>Choisir une puissance</p>
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      [tickInterval]="step"
+      [step]="step"
+      [min]="min"
+      [max]="max"
+      [(ngModel)]="newPuissance"
+      aria-label="Kwh"></mat-slider>
+    <p class="new-puissance">Nouvelle puissance <span >{{newPuissance}} Kwh</span></p>
+      
+  </div>
+  <div class="window-footer">
+    <button class="window-button" (click)="onUpdatePuissance()">Enregistrer la modification</button>
+  </div>
+</div>
