@@ -20,11 +20,8 @@ export class RechargeComponent implements OnInit {
   }
 
   onRecharge(){
-    console.log(this.montant);
-    console.log(this.token);
     this.rechargeService.requestRecharge(this.montant, this.token).subscribe((result) => {
-      // Simple message.
-      let snackBarRef = this.snackBar.open(result.message.toString(), "Fermer");
+      this.snackBar.open(result.message.toString(), "Fermer");
     });
   }
 }
