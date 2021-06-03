@@ -10,10 +10,12 @@ import { ConsommationComponent } from './pages/consommation/consommation/consomm
 import { HistoriqueComponent } from './pages/historique/historique/historique.component';
 import { PuissanceComponent } from './pages/puissance/puissance/puissance.component';
 import { RechargeComponent } from './pages/recharge/recharge/recharge.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { GeolocalisationComponent } from './pages/geolocalisation/geolocalisation/geolocalisation.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,15 @@ import { GeolocalisationComponent } from './pages/geolocalisation/geolocalisatio
     HistoriqueComponent,
     PuissanceComponent,
     RechargeComponent,
-    GeolocalisationComponent
+    GeolocalisationComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

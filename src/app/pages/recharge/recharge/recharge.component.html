@@ -6,19 +6,20 @@
     <div class="window-content">
       <div class="form-group">
         <label for="montant">Montant</label>
-        <input id="montant" type="text" placeholder="Montant en FCFA">
+        <input id="montant" [(ngModel)]="montant" type="number" placeholder="Montant en FCFA">
       </div>
       
       <div class="form-group">
         <label for="token">Token</label>
-        <input id="token" type="text" placeholder="Token">
+        <input id="token" [(ngModel)]="token" type="number" placeholder="Token">
       </div>
       
     </div>
     
     <div class="window-footer">
-      <button id="recharge-btn" class="window-button">Recharger</button>
-    </div>    
+      <button id="recharge-btn" class="window-button" (click)="onRecharge()">Recharger</button>
+    </div>  
+      
 </div>
 
 
