@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use './app/pages/shared/scss/variable';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: variable.$font-roboto;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+}

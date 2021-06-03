@@ -1,0 +1,38 @@
+@use '../../scss/variable';
+
+.compteur-wrapper {
+  box-shadow: variable.$shadow;
+  border-radius: 8px;
+  background-color: white;
+  width: 300px;
+  max-width: 100%;
+  height: 50vh;
+  position: relative;
+  bottom: 12vh;
+    
+  .unite-container {
+    height: 60%;
+    background-color: variable.$color-blue;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+    h1 {
+      color: white;
+    }
+    
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 99%);
+  }
+  
+  .compteur-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 750px){
+  
+  .compteur-wrapper {
+    bottom: -8vh;
+  }
+}

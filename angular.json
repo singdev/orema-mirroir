@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "orema-mirror"
+    }
+  },
+  "defaultProject": "orema-mirror",
+  "cli": {
+    "analytics": false
+  }
 }

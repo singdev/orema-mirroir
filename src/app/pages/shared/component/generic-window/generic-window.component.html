@@ -1,0 +1,46 @@
+<div class="generic-window-wrapper">
+  <div class="window-content">
+    
+    <ng-template #geolocalisation>
+      <app-geolocalisation></app-geolocalisation>
+    </ng-template>
+    
+    <ng-template #consommation>
+      <app-consommation></app-consommation>
+    </ng-template>
+    
+    <ng-template #recharge>
+      <app-recharge></app-recharge>
+    </ng-template>
+    
+    <ng-template #puissance>
+      <app-puissance></app-puissance>
+    </ng-template>
+    
+    <ng-template #historique>
+      <app-historique></app-historique>
+    </ng-template>
+    
+    <ng-container *ngIf='pageId == "recharge"'>
+      <ng-container *ngTemplateOutlet='recharge'></ng-container>
+    </ng-container>
+    
+    <ng-container *ngIf='pageId == "consommation"'>
+      <ng-container *ngTemplateOutlet='consommation'></ng-container>
+    </ng-container>
+    
+    <ng-container *ngIf='pageId == "historique"'>
+      <ng-container *ngTemplateOutlet='historique'></ng-container>
+    </ng-container>
+    
+    <ng-container *ngIf='pageId == "puissance"'>
+      <ng-container *ngTemplateOutlet='puissance'></ng-container>
+    </ng-container>
+
+    <ng-container *ngIf='pageId == "geolocalisation"'>
+      <ng-container *ngTemplateOutlet='geolocalisation'></ng-container>
+    </ng-container>
+    
+  </div>
+  <button class="close-button" [routerLink]="['/']">&times;</button>
+</div>

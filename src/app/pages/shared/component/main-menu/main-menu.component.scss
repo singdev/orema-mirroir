@@ -1,0 +1,42 @@
+@use '../../scss/variable';
+
+.main-menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .square {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: center;
+    button {
+      background-color: white;
+      height: 120px;
+      width: 120px;
+      background-color: white;
+      box-shadow: variable.$shadow;
+      margin: 0.3rem;
+      border: none;
+    }
+  }
+
+  .circle-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background-color: variable.$color-blue;
+    color: white;
+    border: none;
+    position: relative;
+    top: 160px;
+    box-shadow: variable.$shadow;
+  }
+}
+
+@media (max-width: 750px) {
+  .main-menu-wrapper {
+    position: relative;
+    bottom: 8vh;
+  }
+}
