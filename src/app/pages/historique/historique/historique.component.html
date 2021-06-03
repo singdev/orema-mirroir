@@ -1,1 +1,21 @@
-<p>historique works!</p>
+<div class="historique-wrapper">
+  <div class="window-header">
+    <button class="active" [routerLink]="['/window', 'historique']">Recharges</button>
+    <button [routerLink]="['/window', 'consommation']">Consommations</button>
+  </div>
+  
+  <div class="window-content">
+    <div class="recharge" *ngFor="let recharge of recharges">
+      <div class="col-left">
+        <p>{{recharge.montant}} FCFA</p>
+        <p class="subtitle">{{recharge.token}}</p>
+      </div>
+      <p>{{getRechargeTimeStamp(recharge)}}</p>
+    </div>
+  </div>
+  
+  <div class="window-footer">
+    <h2>Consommation total</h2>
+    <p>{{totalRecharge}} FCFA</p>
+  </div>
+</div>

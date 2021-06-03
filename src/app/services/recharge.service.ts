@@ -29,10 +29,17 @@ export class RechargeService {
     });
   }
   
-  fakeDatabasePersistRecharge(rechargeHistorique: RechargeHistorique){
+  getRecharges(): Observable<Array<RechargeHistorique>>{
+    const savedRecharge = localStorage.getItem(this.FAKE_DB_KEY);
+    const recharges = JSON.parse(savedRecharge);
+    return of(recharges);
+  }
+  
+  private fakeDatabasePersistRecharge(rechargeHistorique: RechargeHistorique){
     let historique = JSON.parse(localStorage.getItem(this.FAKE_DB_KEY));
     historique = historique == null ? [] : historique;
     historique.push(rechargeHistorique);
     localStorage.setItem(this.FAKE_DB_KEY, JSON.stringify(historique)); 
   }
+  
 }
