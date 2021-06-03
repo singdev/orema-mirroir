@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AlimentationService } from 'src/app/services/alimentation.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor() { }
+  @Output() alimentationEvent = new EventEmitter<boolean>();
+  
+  constructor(private alimentationService: AlimentationService) { }
 
   ngOnInit(): void {
+  }
+  
+  onAlimentationClick(){
+    this.alimentationService.isAllumer().subscribe(state => {
+      if(state == true){
+        this.alimentationService.eteindreCompteur();
+      } else {
+        this.alimentationService.allumerCompteur();
+      }
+      this.alimentationEvent.emit(state);
+    })
   }
 
 }

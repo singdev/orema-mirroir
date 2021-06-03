@@ -5,7 +5,6 @@ import { AppComponent } from './pages/app.component';
 import { MainMenuComponent } from './pages/shared/component/main-menu/main-menu.component';
 import { GenericWindowComponent } from './pages/shared/component/generic-window/generic-window.component';
 import { CompteurComponent } from './pages/shared/component/compteur/compteur.component';
-import { AlimentationComponent } from './pages/alimentation/alimentation/alimentation.component';
 import { ConsommationComponent } from './pages/consommation/consommation/consommation.component';
 import { HistoriqueComponent } from './pages/historique/historique/historique.component';
 import { PuissanceComponent } from './pages/puissance/puissance/puissance.component';
@@ -24,7 +23,6 @@ import {MatSliderModule} from '@angular/material/slider';
     MainMenuComponent,
     GenericWindowComponent,
     CompteurComponent,
-    AlimentationComponent,
     ConsommationComponent,
     HistoriqueComponent,
     PuissanceComponent,

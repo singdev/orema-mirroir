@@ -1,4 +1,4 @@
-<main>
+<main [ngClass]='{ off: compteurPower}'>
   <section class="blue-section">
     <header>
       <h1>Orema</h1>
@@ -11,7 +11,7 @@
           <router-outlet></router-outlet>
         </div>
         <div class="rigth-container">
-          <app-main-menu></app-main-menu>
+          <app-main-menu (alimentationEvent)="onAlimentationChange($event)"></app-main-menu>
         </div>
       </div>
     </div>

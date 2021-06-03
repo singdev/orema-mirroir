@@ -72,3 +72,9 @@ main {
     }
   }
 }
+
+.off {
+  section.blue-section {
+    background-color: variable.$color-gray;
+  }
+}
