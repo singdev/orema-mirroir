@@ -1,9 +1,19 @@
 <div class="main-menu-wrapper">
-  <button class="circle-button">On/Off</button>
+  <button class="circle-button">
+    <span class="icon-power icon"></span>
+  </button>
   <div class="square">
-    <button [routerLink]="['/window', 'historique']">Historique</button>
-    <button [routerLink]="['/window', 'recharge']">Recharge</button>
-    <button [routerLink]="['/window', 'puissance']">Puissance</button>
-    <button [routerLink]="['/window', 'geolocalisation']">Geolocalisation</button>
+    <button [routerLink]="['/window', 'historique']">
+      <span class="icon-scroll icon"></span>
+      Historique</button>
+    <button [routerLink]="['/window', 'recharge']">
+      <span class="icon-recycle icon"></span>
+      Recharge</button>
+    <button [routerLink]="['/window', 'puissance']">
+      <span class="icon-energy icon" style="font-weight: bold;"></span>
+      Puissance</button>
+    <button [routerLink]="['/window', 'geolocalisation']">
+      <span class="icon-location icon"></span>
+      Geolocalisation</button>
   </div>
 </div>

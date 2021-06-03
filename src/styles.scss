@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use './app/pages/shared/scss/variable';
+@import url(./iconmoon/style.scss);
 
 * {
   padding: 0;
@@ -12,4 +13,12 @@
 body {
   min-height: 100vh;
   min-width: 100vw;
+}
+
+button {
+  transition: 0.4s;
+}
+
+button:hover {
+  cursor: pointer;
 }
