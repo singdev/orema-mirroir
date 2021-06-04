@@ -1,18 +1,18 @@
-<div class="main-menu-wrapper">
-  <button class="circle-button" (click)="onAlimentationClick()">
+<div [ngClass]='{ off: off, "main-menu-wrapper": true}'>
+  <button class="circle-button" (click)="onAlimentationClick()" [routerLink]="['/']">
     <span class="icon-power icon"></span>
   </button>
   <div class="square">
-    <button [routerLink]="['/window', 'historique']">
+    <button [disabled]='off' [routerLink]="['/window', 'historique']">
       <span class="icon-scroll icon"></span>
       Historique</button>
-    <button [routerLink]="['/window', 'recharge']">
+    <button  [disabled]='off' [routerLink]="['/window', 'recharge']">
       <span class="icon-recycle icon"></span>
       Recharge</button>
-    <button [routerLink]="['/window', 'puissance']">
+    <button  [disabled]='off' [routerLink]="['/window', 'puissance']">
       <span class="icon-energy icon" style="font-weight: bold;"></span>
       Puissance</button>
-    <button [routerLink]="['/window', 'geolocalisation']">
+    <button  [disabled]='off' [routerLink]="['/window', 'geolocalisation']">
       <span class="icon-location icon"></span>
       Geolocalisation</button>
   </div>

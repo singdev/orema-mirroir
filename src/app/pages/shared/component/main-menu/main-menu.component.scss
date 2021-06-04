@@ -11,7 +11,6 @@
     align-items: center;
     justify-content: center;
     button {
-      background-color: white;
       height: 120px;
       width: 120px;
       background-color: white;
@@ -56,6 +55,23 @@
   
   .circle-button:hover {
     background-color: #000000;
+  }
+}
+
+.off {
+  .circle-button {
+    color: variable.$color-red;
+    background-color: white;
+  }
+  .square {
+    button:disable {
+      color: #fefefe;
+    }
+    button:hover {
+      background-color: white;
+      color: #fefefe;
+      cursor: not-allowed;
+    }
   }
 }
 

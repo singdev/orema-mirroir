@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   
   onAlimentationChange(event) {
     this.checkPower();
+    window.location.href="/";
   }
   
   checkPower(){

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AlimentationService } from 'src/app/services/alimentation.service';
 
 @Component({
   selector: 'app-compteur',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompteurComponent implements OnInit {
 
-  constructor() { }
+  compteurPower: boolean = false;
+  
+  constructor(private alimentationService: AlimentationService) { }
 
   ngOnInit(): void {
+    this.checkPower();
   }
-
+  
+  checkPower(){
+    this.alimentationService.isAllumer().subscribe(isAllumer => {
+      this.compteurPower = isAllumer;
+      console.log(this.compteurPower);
+    } )
+  }
 }

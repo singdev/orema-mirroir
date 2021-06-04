@@ -1,6 +1,6 @@
 @use '../../scss/variable';
 
-section.blue-section {
+section {
   height: 60vh;
   background-color: variable.$color-blue;
   clip-path: polygon(0% 0%, 100% 0%, 100% 45%, 0% 100%);
@@ -23,4 +23,8 @@ section.blue-section {
     }
   }
   
+}
+
+.off {
+  background-color:  variable.$color-off;
 }

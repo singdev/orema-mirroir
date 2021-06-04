@@ -1,12 +1,12 @@
-<main [ngClass]='{ off: compteurPower}'>
-  <app-blue></app-blue>
+<main>
+  <app-blue [onOff]="compteurPower"></app-blue>
   <div class="main-wrapper">
       <div class="main-container">
         <div class="left-container">
           <router-outlet></router-outlet>
         </div>
         <div class="rigth-container">
-          <app-main-menu (alimentationEvent)="onAlimentationChange($event)"></app-main-menu>
+          <app-main-menu [off]="compteurPower" (alimentationEvent)="onAlimentationChange($event)"></app-main-menu>
         </div>
       </div>
     </div>

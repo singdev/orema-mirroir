@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-blue',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlueComponent implements OnInit {
 
+  @Input() onOff: boolean;
+  
   constructor() { }
 
   ngOnInit(): void {

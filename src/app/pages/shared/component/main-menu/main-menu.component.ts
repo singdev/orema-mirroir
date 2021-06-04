@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AlimentationService } from 'src/app/services/alimentation.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { AlimentationService } from 'src/app/services/alimentation.service';
 })
 export class MainMenuComponent implements OnInit {
 
+  @Input() off: boolean;
+  
   @Output() alimentationEvent = new EventEmitter<boolean>();
   
   constructor(private alimentationService: AlimentationService) { }
