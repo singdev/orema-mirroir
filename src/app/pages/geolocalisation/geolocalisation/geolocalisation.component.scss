@@ -1,0 +1,14 @@
+@use '../../shared/scss/variable';
+
+.geolocalisation-wrapper {
+  display: flex;
+  flex-direction: column;
+  
+  .window-content {
+    flex: 1;
+    #map {
+      height: variable.$window-heigth - 20vh;
+      width: 100%;
+    }
+  }
+}
