@@ -3,60 +3,81 @@
 main {
   display: flex;
   flex-direction: column;
-  .main-wrapper {
+
+  .home-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    height: 100%;
+    background-color: rgba(188, 143, 143, 0.397);
     position: absolute;
     top: 0rem;
     left: 0rem;
     width: 100%;
-    height: 100%;
-          
-    header {
+    
+    .main-wrapper {
+      flex: 1;
       display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      padding: 1rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
       width: 100%;
-      
-      button:hover {
-        background-color: lighten($color: variable.$color-blue, $amount: 60);
-        color: lighten($color: variable.$color-blue, $amount: 0);
+      height: 100%;
+
+      header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 1rem;
+        width: 100%;
+
+        button:hover {
+          background-color: lighten($color: variable.$color-blue, $amount: 60);
+          color: lighten($color: variable.$color-blue, $amount: 0);
+        }
+      }
+
+      .main-container {
+        width: 900px;
+        max-width: 100%;
+        min-height: 90%;
+        max-height: 90%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-end;
+        flex-wrap: wrap;
+
+        .left-container,
+        .rigth-container {
+          flex: 1;
+          margin: 0.5rem;
+          padding: 2rem;
+          max-height: 100%;
+        }
+
+        .left-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .rigth-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
       }
     }
-    
-    .main-container {
-      width: 900px;
-      max-width: 100%;
-      min-height: 90%;
-      max-height: 90%;
-      
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      
-      .left-container, .rigth-container {
-        flex: 1;
-        margin: 0.5rem;
-        padding: 2rem;
-        max-height: 100%;
-      }
-      
-      .left-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      
-      .rigth-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-      }
+
+    .sidebar-container {
+      width: 800px;
+      max-width: 80%;
+      position: absolute;
+      right: 0;
     }
   }
 }

@@ -1,6 +1,7 @@
 <main>
   <app-blue [onOff]="compteurPower"></app-blue>
-  <div class="main-wrapper">
+  <div class="home-wrapper">
+    <div class="main-wrapper">
       <header>
         <button class="window-button" (click)="logout()">Deconnexion</button>
       </header>
@@ -13,4 +14,8 @@
         </div>
       </div>
     </div>
+    <div class="sidebar-container">
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
 </main>

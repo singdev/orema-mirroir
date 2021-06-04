@@ -19,6 +19,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { ControleAccesComponent } from './pages/auth/controle-acces/controle-acces.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { BlueComponent } from './pages/shared/component/blue/blue.component';
+import { SidebarComponent } from './pages/shared/component/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BlueComponent } from './pages/shared/component/blue/blue.component';
     ControleAccesComponent,
     HomeComponent,
     BlueComponent,
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
