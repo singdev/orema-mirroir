@@ -1,18 +1,1 @@
-<main [ngClass]='{ off: compteurPower}'>
-  <section class="blue-section">
-    <header>
-      <h1>Orema</h1>
-      <h2>Application Mirroir 1.0</h2>
-    </header>
-  </section>  
-  <div class="main-wrapper">
-      <div class="main-container">
-        <div class="left-container">
-          <router-outlet></router-outlet>
-        </div>
-        <div class="rigth-container">
-          <app-main-menu (alimentationEvent)="onAlimentationChange($event)"></app-main-menu>
-        </div>
-      </div>
-    </div>
-</main>
+<router-outlet></router-outlet>

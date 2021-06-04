@@ -1,0 +1,80 @@
+@use "../../shared/scss/variable";
+
+main {
+  display: flex;
+  flex-direction: column;
+  section.blue-section {
+    height: 60vh;
+    background-color: variable.$color-blue;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 45%, 0% 100%);
+    
+    header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      
+      h1 {
+        text-transform: uppercase;
+        padding: 0.5rem;
+        color: white;
+        border-right: 2px solid #fff;
+      }
+      
+      h2 {
+        font-weight: normal;
+        padding: 1rem;
+      }
+    }
+    
+  }
+  
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 100%;
+    height: 100%;
+          
+    .main-container {
+      width: 900px;
+      max-width: 100%;
+      min-height: 90%;
+      max-height: 90%;
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      
+      .left-container, .rigth-container {
+        flex: 1;
+        margin: 0.5rem;
+        padding: 2rem;
+        max-height: 100%;
+      }
+      
+      .left-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .rigth-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+
+.off {
+  section.blue-section {
+    background-color: variable.$color-gray;
+  }
+}

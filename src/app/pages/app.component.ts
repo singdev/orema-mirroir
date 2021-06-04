@@ -10,22 +10,9 @@ export class AppComponent implements OnInit {
 
   title = 'orema-mirror';
   
-  compteurPower: boolean = false;
-  
-  constructor(private alimentationService: AlimentationService) {}
+  constructor() {}
   
   ngOnInit(): void {
-    this.checkPower();
   }
   
-  onAlimentationChange(event) {
-    this.checkPower();
-  }
-  
-  checkPower(){
-    this.alimentationService.isAllumer().subscribe(isAllumer => {
-      this.compteurPower = isAllumer;
-      console.log(this.compteurPower);
-    } )
-  }
 }

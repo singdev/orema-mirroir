@@ -31,7 +31,7 @@ export class RechargeService {
   
   getRecharges(): Observable<Array<RechargeHistorique>>{
     const savedRecharge = localStorage.getItem(this.FAKE_DB_KEY);
-    const recharges = JSON.parse(savedRecharge);
+    const recharges = savedRecharge == null ? [] : JSON.parse(savedRecharge);
     return of(recharges);
   }
   

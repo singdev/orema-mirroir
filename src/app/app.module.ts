@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSliderModule} from '@angular/material/slider';
+import { ControleAccesComponent } from './pages/auth/controle-acces/controle-acces.component';
+import { HomeComponent } from './pages/home/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import {MatSliderModule} from '@angular/material/slider';
     PuissanceComponent,
     RechargeComponent,
     GeolocalisationComponent,
+    ControleAccesComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
