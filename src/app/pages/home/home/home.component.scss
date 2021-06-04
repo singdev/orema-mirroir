@@ -74,10 +74,8 @@ main {
     }
 
     .sidebar-container {
-      width: 800px;
+      width: 400px;
       max-width: 80%;
-      position: absolute;
-      right: 0;
     }
   }
 }
@@ -85,5 +83,18 @@ main {
 .off {
   section.blue-section {
     background-color: #fff;
+  }
+}
+
+@media (max-width: 800px){
+  main {
+    .home-wrapper {
+      .sidebar-container {
+          width: 800px;
+          max-width: 80%;
+          position: absolute;
+          right: 0;
+      }
+    }
   }
 }
