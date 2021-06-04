@@ -1,0 +1,58 @@
+@use '../../shared/scss/variable';
+
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  .main-wrapper {
+    width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 4rem;
+    h1 {
+      text-align: center;
+      font-weight: lighter;
+      padding: 1rem;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: white;
+    }
+    
+    .form {
+      width: 100%;
+      background-color: white;
+      padding: 1rem;
+      box-shadow: variable.$shadow;
+      
+      .information {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: lighten($color: variable.$color-blue, $amount: 40);
+        color: lighten($color: variable.$color-blue, $amount: 0);
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        
+        span {
+          font-size: 24px;
+          padding: 0.5rem;
+        }
+      }
+      
+      .form-group {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

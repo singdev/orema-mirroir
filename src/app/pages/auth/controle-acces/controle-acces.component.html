@@ -1,1 +1,22 @@
-<p>controle-acces works!</p>
+<div class="controle-acces-wrapper">
+  <app-blue></app-blue>
+  <main>
+    <div class="main-wrapper">
+      <h1>Accéder à l'application</h1>
+      <div class="form">
+        <p class="information">
+          <span class="icon-information-button"></span>
+          Veuillez renseigner le code d'accès pour pouvoir continuer
+        </p>
+        <div class="form-group">
+          <label for="Mot de passe">Code d'accès</label>
+          <input type="password" [(ngModel)]="codeAcces" placeholder="Veuillez saisir le code d'accès">
+        </div>
+        
+        <div class="form-group">
+          <button class="window-button" (click)="onLogin()">Se connecter</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

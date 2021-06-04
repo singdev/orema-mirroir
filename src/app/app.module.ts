@@ -18,6 +18,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSliderModule} from '@angular/material/slider';
 import { ControleAccesComponent } from './pages/auth/controle-acces/controle-acces.component';
 import { HomeComponent } from './pages/home/home/home.component';
+import { BlueComponent } from './pages/shared/component/blue/blue.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HomeComponent } from './pages/home/home/home.component';
     GeolocalisationComponent,
     ControleAccesComponent,
     HomeComponent,
+    BlueComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,7 @@ import { HomeComponent } from './pages/home/home/home.component';
     FormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatSliderModule
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

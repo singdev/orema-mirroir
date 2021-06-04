@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?cw1yzv');
-  src:  url('fonts/icomoon.eot?cw1yzv#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?cw1yzv') format('truetype'),
-    url('fonts/icomoon.woff?cw1yzv') format('woff'),
-    url('fonts/icomoon.svg?cw1yzv#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?nnoyj2');
+  src:  url('fonts/icomoon.eot?nnoyj2#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?nnoyj2') format('truetype'),
+    url('fonts/icomoon.woff?nnoyj2') format('woff'),
+    url('fonts/icomoon.svg?nnoyj2#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,21 +25,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-energy:before {
+.icon-cancel:before {
   content: "\e900";
 }
-.icon-recycle:before {
+.icon-energy:before {
   content: "\e901";
 }
-.icon-location:before {
+.icon-information-button:before {
   content: "\e902";
 }
-.icon-scroll:before {
+.icon-location:before {
   content: "\e903";
 }
-.icon-cancel:before {
+.icon-power:before {
   content: "\e904";
 }
-.icon-power:before {
+.icon-recycle:before {
   content: "\e905";
+}
+.icon-scroll:before {
+  content: "\e906";
 }
