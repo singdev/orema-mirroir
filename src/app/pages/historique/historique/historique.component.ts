@@ -40,7 +40,7 @@ export class HistoriqueComponent implements OnInit {
     let diff: any = Math.floor(((now.getTime() - date.getTime()) / 1000));
     let label = "s";
     if(diff > 59){
-      label = "m";
+      label = "min";
       diff = Math.floor(diff / 60);
       if(diff > 59) {
         label = "h";

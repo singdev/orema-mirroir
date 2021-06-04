@@ -15,6 +15,12 @@ export class RechargeService {
   constructor() { }
   
   requestRecharge(montant: number, token: number): Observable<RechargeResult> {
+    if(isNaN(montant) || montant < 2000){
+      return of(new RechargeResult("Montant insuffisant (Minimum 2000 FCFA)", false ));
+    }
+    if(isNaN(token) || token.toString().length != 20){
+      return of(new RechargeResult("Format du token invalide (20 chiffres)", false ));
+    }
     const r = Math.floor(Math.random() * 100);
     const success = r % 2 == 0;
     const message = success ? "Token accepté" : "Token invalide";
