@@ -9,7 +9,7 @@
   height: 50vh;
   position: relative;
   bottom: 12vh;
-    
+
   .unite-container {
     height: 60%;
     background-color: variable.$color-blue;
@@ -17,16 +17,34 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
+
     h1 {
       color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      span {
+        font-size: 12px;
+        font-weight: normal;
+      }
     }
-    
+
     clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 99%);
   }
-  
+
   .compteur-container {
     padding: 1.5rem;
+    p {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      span {
+        font-size: 13px;
+        font-weight: normal;
+        color: #777;
+        padding-top: 0.2rem;
+      }
+    }
   }
 }
 
@@ -39,8 +57,7 @@
   }
 }
 
-@media (max-width: 750px){
-  
+@media (max-width: 750px) {
   .compteur-wrapper {
     bottom: -8vh;
   }
