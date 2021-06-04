@@ -14,6 +14,19 @@ main {
     width: 100%;
     height: 100%;
           
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: 1rem;
+      width: 100%;
+      
+      button:hover {
+        background-color: lighten($color: variable.$color-blue, $amount: 60);
+        color: lighten($color: variable.$color-blue, $amount: 0);
+      }
+    }
+    
     .main-container {
       width: 900px;
       max-width: 100%;

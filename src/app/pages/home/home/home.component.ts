@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlimentationService } from 'src/app/services/alimentation.service';
+import { ControleAccesService } from 'src/app/services/controle-acces.service';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,17 @@ export class HomeComponent implements OnInit {
 
   compteurPower: boolean = false;
   
-  constructor(private alimentationService: AlimentationService) { }
+  constructor(private alimentationService: AlimentationService, private controleAccesService: ControleAccesService) { }
 
   ngOnInit(): void {
     this.checkPower();
   }
 
+  logout(){
+    this.controleAccesService.clearSession().subscribe(v => {
+      window.location.href = "/";
+    });
+  }
   
   onAlimentationChange(event) {
     this.checkPower();

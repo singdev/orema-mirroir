@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { compareSync } from 'bcryptjs';
+import { Observable, of } from 'rxjs';
 
 
 @Injectable({
@@ -42,5 +43,10 @@ export class ControleAccesService {
     } else {
       return false;
     }
+  }
+  
+  clearSession(): Observable<boolean>{
+    localStorage.clear();
+    return of(true);
   }
 }
