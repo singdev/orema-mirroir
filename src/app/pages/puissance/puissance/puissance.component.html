@@ -15,7 +15,12 @@
       [(ngModel)]="newPuissance"
       aria-label="Kwh"></mat-slider>
     <p class="new-puissance">Nouvelle puissance <span >{{newPuissance}} Kwh</span></p>
-      
+    
+    <div class="form-group">
+      <label for="token">Token de puissance</label>
+      <input id="token" [(ngModel)]="token" type="number" placeholder="Token">
+    </div>
+    
   </div>
   <div class="window-footer">
     <button class="window-button" (click)="onUpdatePuissance()">Enregistrer la modification</button>

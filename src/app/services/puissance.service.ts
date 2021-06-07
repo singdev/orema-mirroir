@@ -10,7 +10,7 @@ export class PuissanceService {
   
   constructor() { }
   
-  updatePuissance(newPuissance: number): Observable<boolean> {
+  updatePuissance(newPuissance: number, token: number): Observable<boolean> {
     const r = Math.floor(Math.random() * 100);
     const success = r % 2 == 0;
     if(success){
