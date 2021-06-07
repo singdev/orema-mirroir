@@ -4,6 +4,7 @@
     <div class="main-wrapper">
       <header>
         <button class="window-button" (click)="logout()">Deconnexion</button>
+        <button [ngClass]="{ 'icon-button': true, 'hidden': isOpenSidebar }" (click)="openSidebar()"><span class="icon-menu"></span></button> 
       </header>
       <div class="main-container">
         <div class="left-container">
@@ -14,7 +15,10 @@
         </div>
       </div>
     </div>
-    <div class="sidebar-container">
+    <div [ngClass]="{ 'sidebar-container': true, 'sidebar-close': isOpenSidebar == false }">
+      <div class="sidebar-header">
+        <button class="icon-button" (click)="closeSidebar()"><span class="icon-cancel-2"></span></button> 
+      </div>
       <app-sidebar></app-sidebar>
     </div>
   </div>

@@ -9,11 +9,15 @@ import { ControleAccesService } from 'src/app/services/controle-acces.service';
 })
 export class HomeComponent implements OnInit {
 
-  compteurPower: boolean = false;
+  compteurPower: boolean;
+  
+  isOpenSidebar: boolean;
   
   constructor(private alimentationService: AlimentationService, private controleAccesService: ControleAccesService) { }
 
   ngOnInit(): void {
+    this.compteurPower = true;
+    this.isOpenSidebar = false;
     this.checkPower();
   }
 
@@ -33,5 +37,13 @@ export class HomeComponent implements OnInit {
       this.compteurPower = isAllumer;
       console.log(this.compteurPower);
     } )
+  }
+  
+  openSidebar(){
+    this.isOpenSidebar = true;
+  }
+  
+  closeSidebar(){
+    this.isOpenSidebar = false;
   }
 }
