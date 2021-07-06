@@ -6,7 +6,7 @@ export class ConsommationTimeStampContrat {
   
   constructor(jsonParsed, NumCompteur: string){
     this.NumCompteur = NumCompteur;
-    this.Unite = jsonParsed.Unite;
+    this.Unite = Number.parseInt(jsonParsed.Unite);
     this.Date = jsonParsed.Date;
   }
 }
