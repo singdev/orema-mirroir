@@ -35,6 +35,28 @@
 
   .compteur-container {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    .more-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      color: #ccc;
+      border-radius: 100px;
+      width: 16px;
+      height: 16px;
+      transition: 0.4s;
+    }
+    
+    .more-btn:hover {
+      cursor: pointer;
+      color: variable.$color-blue;
+      border-color: variable.$color-blue;
+    }
+    
     p {
       display: flex;
       flex-direction: column;

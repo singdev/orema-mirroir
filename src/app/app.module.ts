@@ -20,6 +20,7 @@ import { ControleAccesComponent } from './pages/auth/controle-acces/controle-acc
 import { HomeComponent } from './pages/home/home/home.component';
 import { BlueComponent } from './pages/shared/component/blue/blue.component';
 import { SidebarComponent } from './pages/shared/component/sidebar/sidebar.component';
+import { DetailComponent } from './pages/home/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SidebarComponent } from './pages/shared/component/sidebar/sidebar.compo
     HomeComponent,
     BlueComponent,
     SidebarComponent,
+    DetailComponent,
   ],
   imports: [
     CommonModule,
