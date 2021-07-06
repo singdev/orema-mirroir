@@ -9,6 +9,8 @@ import { AlimentationService } from 'src/app/services/alimentation.service';
 export class CompteurComponent implements OnInit {
 
   compteurPower: boolean = false;
+  unite: number;
+  numeroCompteur: string;
   
   constructor(private alimentationService: AlimentationService) { }
 
@@ -19,7 +21,10 @@ export class CompteurComponent implements OnInit {
   checkPower(){
     this.alimentationService.isAllumer().subscribe(isAllumer => {
       this.compteurPower = isAllumer;
-      console.log(this.compteurPower);
+      this.alimentationService.getInformations().subscribe(informations => {
+        this.unite = informations.Solde;
+        this.numeroCompteur = informations.NumCompteur;
+      })
     } )
   }
 }

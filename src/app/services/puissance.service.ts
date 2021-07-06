@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { PuissanceInstantanneeContrat } from '../model/contrat/PuissanceInstantaneContrat';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class PuissanceService {
   }
   
   getPuissance(): Observable<number>{
+    let puissanceContrat = new PuissanceInstantanneeContrat(  {
+      "NumCompteur": "A07OOO9",
+      "Puissance": "6",
+    });
     let puissance = Number.parseInt(localStorage.getItem(this.FAKE_DB_KEY));
     if(isNaN(puissance)){
       puissance = 3;

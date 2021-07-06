@@ -20,8 +20,12 @@ export class HistoriqueComponent implements OnInit {
   }
   
   loadRecharges(){
-    this.rechargeService.getRecharges().subscribe(v => {
-      this.recharges = v.reverse();
+    this.rechargeService.getRecharges().subscribe(rechargeContrat => {
+      this.recharges = [];
+      for(let i = 0; i < rechargeContrat.ListRecharge.length; i++){
+        let item = rechargeContrat.ListRecharge[i];
+        this.recharges.push(new RechargeHistorique(item.Solde, item.token, item.Date));
+      }
       this.totalRecharge = this.getTotalRecharge();
     });
   }
