@@ -4,8 +4,9 @@
   box-shadow: variable.$shadow;
   border-radius: 8px;
   background-color: white;
-  width: 300px;
-  max-width: 100%;
+  width: 20rem;
+  min-height: 20rem;
+  max-width: 90vw;
   height: 50vh;
   position: relative;
   bottom: 12vh;

@@ -1,22 +1,36 @@
 @use '../../shared/scss/variable';
 
 .puissance-wrapper {
-  p, h2 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  .window-content {
+    flex: 1;  
+    overflow-y: scroll;
+  }
+
+  p,
+  h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   h2 {
     font-weight: 500;
     font-size: 13px;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
   }
-  
+
   p {
     font-size: 13px;
     color: #777;
+  }
+
+  .form-group {
+    padding-top: 0.5rem;
   }
   
   .new-puissance {
