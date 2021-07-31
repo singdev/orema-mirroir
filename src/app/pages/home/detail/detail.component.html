@@ -8,5 +8,10 @@
     <p>Puissance maximale: <span>{{puissanceMaximale}}</span></p>
   </div>
   <div class="window-footer">
+    <div class="form-group">
+      <label for="meter_id">ID Compteur</label>
+      <input type="text" id="meter_id" [(ngModel)]="meterId">
+    </div>
+    <button class="window-button" (click)="updateMeterId()">Enregistrer</button>
   </div>
 </div>

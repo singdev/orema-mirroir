@@ -13,6 +13,8 @@ export class GeolocalisationComponent implements OnInit {
   boitierLat: number;
   boitierLng: number;
   map: any;
+  
+  loading:boolean  = true;
 
   constructor(private geolocalisationService: GeolocalisationService) { }
 
@@ -20,12 +22,16 @@ export class GeolocalisationComponent implements OnInit {
     this.loadGeocalisationBoitier();
   }
 
-  loadGeocalisationBoitier() {
-    this.geolocalisationService.getCompteurGeolocalisation().subscribe(localization => {
+  async loadGeocalisationBoitier() {
+    const localization = await this.geolocalisationService.getCompteurGeolocalisation();
+    if(localization){
       this.boitierLat = localization.latitude;
       this.boitierLng = localization.longitude;
-      this.loadMap();
-    })
+      this.loadMap();     
+      this.loading = false; 
+    } else {
+      alert("Veuillez recharger la page s'il vous plait");      
+    }
   }
 
   loadMap() {
@@ -33,7 +39,7 @@ export class GeolocalisationComponent implements OnInit {
       geometry: new ol.geom.Point(ol.proj.fromLonLat([this.boitierLng, this.boitierLat])),
       name: 'Boitier Orema',
     });
-    
+
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon({
         color: 'rgba(255, 0, 0, .5)',
@@ -41,17 +47,17 @@ export class GeolocalisationComponent implements OnInit {
         src: 'assets/img/pin.png',
       }),
     });
-    
+
     iconFeature.setStyle(iconStyle);
-    
+
     var vectorSource = new ol.source.Vector({
       features: [iconFeature],
     });
-    
+
     var vectorLayer = new ol.layer.Vector({
       source: vectorSource,
     });
-    
+
     this.map = new ol.Map({
       target: 'map',
       layers: [

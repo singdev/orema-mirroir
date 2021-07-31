@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingService } from 'src/app/services/setting.service';
 
 @Component({
   selector: 'app-detail',
@@ -11,9 +12,25 @@ export class DetailComponent implements OnInit {
   indexTarif: string = "0";
   puissanceMaximale: string = "0";
   
-  constructor() { }
+  meterId: string = "";
+  
+  constructor(private settingService: SettingService) { }
 
   ngOnInit(): void {
+    this.loadMeterId();
+  }
+  
+  loadMeterId(){
+    this.meterId = this.settingService.getMeterId();
+  }
+  
+  updateMeterId(){
+    if(this.meterId != ""){
+      this.settingService.persistMeterId(this.meterId);
+      location.reload();
+    } else {
+      alert("Numero de compteur invalide !");
+    }
   }
 
 }

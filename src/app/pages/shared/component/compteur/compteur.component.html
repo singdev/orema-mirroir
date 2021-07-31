@@ -1,4 +1,5 @@
 <div class="compteur-wrapper">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   <div [ngClass]='{ off: compteurPower, "unite-container": true}'>
     <h1>{{unite}} kWh <span>Unité</span></h1>
   </div>

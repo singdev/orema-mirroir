@@ -11,20 +11,24 @@ export class CompteurComponent implements OnInit {
   compteurPower: boolean = false;
   unite: number;
   numeroCompteur: string;
-  
+  loading:boolean  = true;
+
   constructor(private alimentationService: AlimentationService) { }
 
   ngOnInit(): void {
     this.checkPower();
   }
-  
-  checkPower(){
-    this.alimentationService.isAllumer().subscribe(isAllumer => {
-      this.compteurPower = isAllumer;
-      this.alimentationService.getInformations().subscribe(informations => {
+
+  checkPower() {
+    this.alimentationService.isAllumer().subscribe(async (isAllumer) => {
+      const informations = await this.alimentationService.getInformations();
+      if(informations){
         this.unite = informations.Solde;
         this.numeroCompteur = informations.NumCompteur;
-      })
-    } )
+        this.loading = false; 
+      } else {
+        alert("Veuillez recharger la page s'il vous plait");
+      }
+    });
   }
 }

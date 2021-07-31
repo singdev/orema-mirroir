@@ -21,6 +21,9 @@ import { HomeComponent } from './pages/home/home/home.component';
 import { BlueComponent } from './pages/shared/component/blue/blue.component';
 import { SidebarComponent } from './pages/shared/component/sidebar/sidebar.component';
 import { DetailComponent } from './pages/home/detail/detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { DetailComponent } from './pages/home/detail/detail.component';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatSliderModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

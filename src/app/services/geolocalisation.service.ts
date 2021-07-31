@@ -1,22 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { InformationGeneralContrat } from '../model/contrat/InformationGeneraleContrat';
 import { Localization } from '../model/localization';
+import { SettingService } from './setting.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocalisationService {
 
-  constructor() { }
+  constructor(private http: HttpClient, private setting: SettingService) { }
   
-  getCompteurGeolocalisation(): Observable<Localization>{
-    let informationGenerales = new InformationGeneralContrat({
-      "NumCompteur": "A07OOO9",
-      "Solde": Number(((Math.random() * 100) / 3).toFixed(1)),
-      "Coordonne": "0.4055344200637102, 9.464544158114066",
-    });
-    return of(new Localization(informationGenerales.Latitude, informationGenerales.Longitude));
+  async getCompteurGeolocalisation(): Promise<Localization>{
+    try {
+      let meter_id: string =  this.setting.getMeterId();
+      const puissance = await this.http.post(`${SettingService.API_URL}/api/Read/Puissance?CompteurNumber=${meter_id}`, {}).toPromise();
+      const localisation = await this.http.post(`${SettingService.API_URL}/api/Read/localisation?CompteurNumber=${meter_id}`, {}).toPromise();
+      const informationGenerales =  new InformationGeneralContrat( {
+        "NumCompteur": meter_id,
+        "Solde": Number.parseFloat(puissance.toString()) / 10.0,
+        "Coordonne": localisation["coordonnes"],
+      });
+      return new Localization(informationGenerales.Latitude, informationGenerales.Longitude);
+    } catch(err){
+      console.log(err);
+      return null;
+    }
   }
 }
