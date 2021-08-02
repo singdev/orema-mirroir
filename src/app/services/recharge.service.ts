@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
@@ -5,6 +6,7 @@ import { delay } from 'rxjs/operators';
 import { RechargeContrat } from '../model/contrat/RechargeContrat';
 import { RechargeHistorique } from '../model/recharge-historique';
 import { RechargeResult } from '../model/recharge-result';
+import { SettingService } from './setting.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,27 +15,18 @@ export class RechargeService {
 
   private FAKE_DB_KEY = 'historique_recharge_key';
 
-  constructor() { }
+  constructor(private http: HttpClient, private setting: SettingService) { }
 
-  requestRecharge(montant: number, token: number): Observable<RechargeResult> {
-    if (isNaN(montant) || montant < 2000) {
-      return of(new RechargeResult("Montant insuffisant (Minimum 2000 FCFA)", false));
+  async requestRecharge(montant: number, token: number): Promise<RechargeResult> {
+    try {
+      let meter_id: string =  this.setting.getMeterId();
+      const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`, {}).toPromise();
+      console.log(res);
+      return new RechargeResult(res.toString(), true);
+    } catch(err){
+      console.log(err);
+      return null;
     }
-    if (isNaN(token) || token.toString().length != 20) {
-      return of(new RechargeResult("Format du token invalide (20 chiffres)", false));
-    }
-    const r = Math.floor(Math.random() * 100);
-    const success = r % 2 == 0;
-    const message = success ? "Token accepté" : "Token invalide";
-    if (success) {
-      const date = new Date();
-      this.fakeDatabasePersistRecharge(new RechargeHistorique(montant, token, date.toString()));
-    }
-    return new Observable((observer) => {
-      observer.next(new RechargeResult(message, success));
-      delay(5000);
-      observer.complete();
-    });
   }
 
   getRecharges(): Observable<RechargeContrat> {

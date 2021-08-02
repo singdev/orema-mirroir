@@ -19,9 +19,9 @@ export class RechargeComponent implements OnInit {
     this.token = 0;
   }
 
-  onRecharge(){
-    this.rechargeService.requestRecharge(this.montant, this.token).subscribe((result) => {
-      this.snackBar.open(result.message.toString(), "Fermer");
-    });
+  async onRecharge(){
+    const result = await this.rechargeService.requestRecharge(this.montant, this.token);
+    this.snackBar.open(result.message.toString(), "Fermer");
   }
+  
 }

@@ -14,19 +14,21 @@ export class GeolocalisationService {
   constructor(private http: HttpClient, private setting: SettingService) { }
   
   async getCompteurGeolocalisation(): Promise<Localization>{
-    try {
-      let meter_id: string =  this.setting.getMeterId();
-      const puissance = await this.http.post(`${SettingService.API_URL}/api/Read/Puissance?CompteurNumber=${meter_id}`, {}).toPromise();
-      const localisation = await this.http.post(`${SettingService.API_URL}/api/Read/localisation?CompteurNumber=${meter_id}`, {}).toPromise();
-      const informationGenerales =  new InformationGeneralContrat( {
-        "NumCompteur": meter_id,
-        "Solde": Number.parseFloat(puissance.toString()) / 10.0,
-        "Coordonne": localisation["coordonnes"],
-      });
-      return new Localization(informationGenerales.Latitude, informationGenerales.Longitude);
-    } catch(err){
-      console.log(err);
-      return null;
+    let loop = true;
+    while(loop){
+      try {
+        let meter_id: string =  this.setting.getMeterId();
+        const puissance = await this.http.post(`${SettingService.API_URL}/api/Read/Puissance?CompteurNumber=${meter_id}`, {}).toPromise();
+        const localisation = await this.http.post(`${SettingService.API_URL}/api/Read/localisation?CompteurNumber=${meter_id}`, {}).toPromise();
+        const informationGenerales =  new InformationGeneralContrat( {
+          "NumCompteur": meter_id,
+          "Solde": Number.parseFloat(puissance.toString()) / 10.0,
+          "Coordonne": localisation["coordonnes"],
+        });
+        return new Localization(informationGenerales.Latitude, informationGenerales.Longitude);
+      } catch(err){
+        console.log(err);
+      }
     }
   }
 }
