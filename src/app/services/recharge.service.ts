@@ -19,42 +19,50 @@ export class RechargeService {
 
   async requestRecharge(montant: number, token: number): Promise<RechargeResult> {
     try {
-      let meter_id: string =  this.setting.getMeterId();
-      const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`, {}).toPromise();
-      console.log(res);
-      return new RechargeResult(res.toString(), true);
-    } catch(err){
+      let meter_id: string = this.setting.getMeterId();
+      if (meter_id != null && meter_id != "") {
+        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`,
+
+          {}, {
+            headers: {
+              "accept": "*/*"
+            }
+        }).toPromise();
+        console.log(res.toString());
+        return new RechargeResult(res.toString(), true);
+      }
+      return null;
+    } catch (err) {
       console.log(err);
+      if (err.status == 200) {
+        console.log(err.error.text);
+        return new RechargeResult(err.error.text, true);
+      }
       return null;
     }
   }
 
-  getRecharges(): Observable<RechargeContrat> {
-    return of(new RechargeContrat({
-      "NumCompteur": "A07OOO9",
-      "ListRecharge": [
-        {
-          "Solde": "5000F",
-          "Date": "2021-04-23T18:25:43.511Z",
-          "token": "12345678901234567890"
-        },
-        {
-          "Solde": "10000F",
-          "Date": "2021-04-30T18:25:43.511Z",
-          "token": "12345678901234567890"
-        },
-        {
-          "Solde": "15000F",
-          "Date": "2021-05-23T18:25:43.511Z",
-          "token": "12345678901234567890"
-        },
-        {
-          "Solde": "20000F",
-          "Date": "2021-05-26T18:25:43.511Z",
-          "token": "12345678901234567890"
-        }
-      ]
-    }));
+  async getRecharges(): Promise<RechargeContrat> {
+    try {
+      let meter_id: string = this.setting.getMeterId();
+      if (meter_id != null && meter_id != "") {
+        const res = await this.http.get(`${SettingService.API_URL}/api/Read/Histrorique?CompteurNumber=${meter_id}`).toPromise();
+        const array = [];
+        res["list"].forEach(a => {
+          const str = a.date.split(" ");
+          const date = new Date(str[0].split("/")[2], str[0].split("/")[1]-1, str[0].split("/")[0], str[1].split(":")[0], str[1].split(":")[1], str[1].split(":")[2], 0)
+          array.push({ "Solde": a.solde, "Date": date.toUTCString(), "token": a.token })
+        })
+        return new RechargeContrat({
+          "NumCompteur": res["numCompteur"],
+          "ListRecharge": array
+        });
+      }
+      return null;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
   }
 
   private fakeDatabasePersistRecharge(rechargeHistorique: RechargeHistorique) {

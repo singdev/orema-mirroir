@@ -13,10 +13,9 @@
         <label for="token">Token de recharge</label>
         <input id="token" [(ngModel)]="token" type="number" placeholder="Token">
       </div>
-      
     </div>
     
-    <div class="window-footer">
+    <div class="window-footer" *ngIf="loading == false">
       <button id="recharge-btn" class="window-button" (click)="onRecharge()">Recharger</button>
     </div>  
       

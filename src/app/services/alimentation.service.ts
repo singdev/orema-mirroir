@@ -29,9 +29,10 @@ export class AlimentationService {
   
   async getInformations(): Promise<InformationGeneralContrat> {
     let loop = true;
-    while(loop){
+    let count = 0;
+    let meter_id: string =  this.setting.getMeterId();
+    while(loop && meter_id != null && meter_id != "") {
       try {
-        let meter_id: string =  this.setting.getMeterId();
         const puissance = await this.http.post(`${SettingService.API_URL}/api/Read/Puissance?CompteurNumber=${meter_id}`, {}).toPromise();
         const localisation = await this.http.post(`${SettingService.API_URL}/api/Read/localisation?CompteurNumber=${meter_id}`, {}).toPromise();
         loop = false;
@@ -42,7 +43,12 @@ export class AlimentationService {
         }); 
       } catch(err){
         console.log(err);
+        count++;
+        if(count >= 2){
+          loop = false;
+        }
       }
     }
+    return null;
   }
 }

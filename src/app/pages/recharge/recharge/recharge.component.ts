@@ -11,17 +11,25 @@ export class RechargeComponent implements OnInit {
 
   montant: number;
   token: number;
+  loading: boolean = false;
   
   constructor(private rechargeService: RechargeService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.montant = 0;
     this.token = 0;
+    this.loading = false;
   }
 
   async onRecharge(){
+    this.loading = true;
     const result = await this.rechargeService.requestRecharge(this.montant, this.token);
-    this.snackBar.open(result.message.toString(), "Fermer");
+    this.loading = false;
+    if(result == null){
+      alert("La recharge ne s'est pas faite !");
+    } else {
+      this.snackBar.open(result.message.toString(), "Fermer");
+    }
   }
   
 }
