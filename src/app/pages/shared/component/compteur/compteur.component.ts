@@ -24,7 +24,12 @@ export class CompteurComponent implements OnInit {
   
   load(){
     const meter_id = this.setting.getMeterId();
-    return meter_id != "";
+    const puissance = this.setting.getPuissance();
+    this.unite = Number.parseFloat(this.setting.getPuissance()) / 10;
+    if(puissance == null || puissance == ""){
+      this.unite = 0;
+    }
+    return meter_id != "" && meter_id != null;
   }
 
   checkPower() {
@@ -37,4 +42,5 @@ export class CompteurComponent implements OnInit {
       }
     });
   }
+  
 }

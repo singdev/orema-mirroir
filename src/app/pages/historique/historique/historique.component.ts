@@ -21,12 +21,14 @@ export class HistoriqueComponent implements OnInit {
 
   async loadRecharges() {
     const rechargeContrat = await this.rechargeService.getRecharges();
-    this.recharges = [];
-    for (let i = 0; i < rechargeContrat.ListRecharge.length; i++) {
-      let item = rechargeContrat.ListRecharge[i];
-      this.recharges.push(new RechargeHistorique(item.Solde, item.token, item.Date));
+    if (rechargeContrat != null) {
+      this.recharges = [];
+      for (let i = 0; i < rechargeContrat.ListRecharge.length; i++) {
+        let item = rechargeContrat.ListRecharge[i];
+        this.recharges.push(new RechargeHistorique(item.Solde, item.token, item.Date));
+      }
+      this.totalRecharge = this.getTotalRecharge();
     }
-    this.totalRecharge = this.getTotalRecharge();
   }
 
   getTotalRecharge() {

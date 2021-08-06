@@ -22,7 +22,6 @@ export class RechargeService {
       let meter_id: string = this.setting.getMeterId();
       if (meter_id != null && meter_id != "") {
         const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`,
-
           {}, {
             headers: {
               "accept": "*/*"
