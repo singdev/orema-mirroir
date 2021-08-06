@@ -24,12 +24,7 @@ export class CompteurComponent implements OnInit {
   
   load(){
     const meter_id = this.setting.getMeterId();
-    console.log(meter_id);
-    if(meter_id == ""){
-      alert("Veuillez indiquer le numero de compteur via le bouton +");
-      return false;
-    }
-    return true;
+    return meter_id != "";
   }
 
   checkPower() {
@@ -39,8 +34,6 @@ export class CompteurComponent implements OnInit {
         this.unite = informations.Solde;
         this.numeroCompteur = informations.NumCompteur;
         this.loading = false; 
-      } else {
-        alert("Verifier le numero du compteur et recharger la page");
       }
     });
   }

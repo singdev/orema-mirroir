@@ -29,8 +29,6 @@ export class GeolocalisationComponent implements OnInit {
       this.boitierLng = localization.longitude;
       this.loadMap();     
       this.loading = false; 
-    } else {
-      alert("Verifier le numero du compteur et recharger la page");      
     }
   }
 

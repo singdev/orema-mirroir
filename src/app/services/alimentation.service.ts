@@ -28,27 +28,20 @@ export class AlimentationService {
   }
   
   async getInformations(): Promise<InformationGeneralContrat> {
-    let loop = true;
-    let count = 0;
     let meter_id: string =  this.setting.getMeterId();
-    while(loop && meter_id != null && meter_id != "") {
-      try {
-        const puissance = await this.http.post(`${SettingService.API_URL}/api/Read/Puissance?CompteurNumber=${meter_id}`, {}).toPromise();
-        const localisation = await this.http.post(`${SettingService.API_URL}/api/Read/localisation?CompteurNumber=${meter_id}`, {}).toPromise();
-        loop = false;
-        return new InformationGeneralContrat( {
-          "NumCompteur": meter_id,
-          "Solde": Number.parseFloat(puissance.toString()) / 10.0,
-          "Coordonne": localisation["coordonnes"],
-        }); 
-      } catch(err){
-        console.log(err);
-        count++;
-        if(count >= 2){
-          loop = false;
-        }
-      }
+    let puissance: Object = this.setting.getPuissance();
+    let localisation: Object = { coordonnes: "0.00000,0.000000" };
+    try {
+      puissance = await this.http.post(`${SettingService.API_URL}/api/Read/Puissance?CompteurNumber=${meter_id}`, {}).toPromise();
+      console.log(puissance);
+      this.setting.persistPuissance(Number.parseFloat(puissance.toString()));
+    } catch(err) {
+      console.log(err);
     }
-    return null;
+    return new InformationGeneralContrat( {
+      "NumCompteur": meter_id,
+      "Solde": Number.parseFloat(puissance.toString()) / 10.0,
+      "Coordonne": localisation["coordonnes"],
+    });
   }
 }
