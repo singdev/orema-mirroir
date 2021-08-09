@@ -22,8 +22,9 @@ export class GeolocalisationService {
     let puissance: Object = "0";
     let localisation: Object = { coordonnes: "0.00000,0.000000" };
     let cache = this.setting.getGeoloc();
+    console.log(cache);
     if(cache != "" && cache != null){
-      localisation = cache;
+      localisation = { coordonnes: cache };
     }
     try {
       localisation = await this.http.post(`${SettingService.API_URL}/api/Read/localisation?CompteurNumber=${meter_id}`, {}).toPromise();
