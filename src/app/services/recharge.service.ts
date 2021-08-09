@@ -1,8 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { RechargeContrat } from '../model/contrat/RechargeContrat';
 import { RechargeHistorique } from '../model/recharge-historique';
 import { RechargeResult } from '../model/recharge-result';
@@ -21,7 +18,12 @@ export class RechargeService {
     try {
       let meter_id: string = this.setting.getMeterId();
       if (meter_id != null && meter_id != "") {
-        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`,
+        let strToken = token.toString();
+        while(strToken.length < 20) {
+          strToken = '0' + strToken;
+        }
+        console.log(strToken);
+        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${strToken}`,
           {}, {
             headers: {
               "accept": "*/*"
