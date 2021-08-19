@@ -123,7 +123,7 @@ export class GeolocalisationComponent implements OnInit {
       zoom: 15
     });
     // Ajouter un marqueur pour le boitier
-    const marker1 = new mapboxgl.Marker()
+    this.marker = new mapboxgl.Marker()
     .setLngLat(boitierCoordinates)
     .addTo(this.map);
     this.map.addControl(new mapboxgl.NavigationControl());
