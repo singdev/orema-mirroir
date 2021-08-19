@@ -1,8 +1,10 @@
 <main>
   <app-blue [onOff]="compteurPower"></app-blue>
-  <div class="main-wrapper">
+  <div class="home-wrapper">
+    <div class="main-wrapper">
       <header>
-        <button class="window-button" (click)="logout()">Deconnexion</button>
+        <button class="window-button icon-button" (click)="logout()"><span class="icon-logout"></span></button>
+        <button [ngClass]="{ 'icon-button': true, 'hidden': isOpenSidebar }" (click)="openSidebar()"><span class="icon-bell"></span></button> 
       </header>
       <div class="main-container">
         <div class="left-container">
@@ -13,4 +15,11 @@
         </div>
       </div>
     </div>
+    <div [ngClass]="{ 'sidebar-container': true, 'sidebar-close': isOpenSidebar == false }">
+      <div class="sidebar-header">
+        <button class="icon-button" (click)="closeSidebar()"><span class="icon-cancel-2"></span></button> 
+      </div>
+      <app-sidebar></app-sidebar>
+    </div>
+  </div>
 </main>

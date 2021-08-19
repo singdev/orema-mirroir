@@ -15,6 +15,7 @@ export class PuissanceComponent implements OnInit {
   
   puissance: number;
   newPuissance: number;
+  token: number;
   
   constructor(private puissanceService: PuissanceService, private snackBar: MatSnackBar) { }
 
@@ -30,7 +31,7 @@ export class PuissanceComponent implements OnInit {
   }
   
   onUpdatePuissance(){
-    this.puissanceService.updatePuissance(this.newPuissance).subscribe(v => {
+    this.puissanceService.updatePuissance(this.newPuissance, this.token).subscribe(v => {
       if(v) {
         this.snackBar.open("Mise a jour effectue", "Fermer");
         this.loadCurrentPuissance();

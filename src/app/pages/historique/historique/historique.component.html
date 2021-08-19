@@ -7,7 +7,7 @@
   <div class="window-content">
     <div class="recharge" *ngFor="let recharge of recharges">
       <div class="col-left">
-        <p>{{recharge.montant}} FCFA</p>
+        <p>Etat initial: {{recharge.montant/10}} Kw</p>
         <p class="subtitle">{{recharge.token}}</p>
       </div>
       <p>{{getRechargeTimeStamp(recharge)}}</p>
@@ -16,6 +16,6 @@
   
   <div class="window-footer">
     <h2>Consommation total</h2>
-    <p>{{totalRecharge}} FCFA</p>
+    <p>{{totalRecharge / 10}} Kw</p>
   </div>
 </div>

@@ -19,6 +19,12 @@ import {MatSliderModule} from '@angular/material/slider';
 import { ControleAccesComponent } from './pages/auth/controle-acces/controle-acces.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { BlueComponent } from './pages/shared/component/blue/blue.component';
+import { SidebarComponent } from './pages/shared/component/sidebar/sidebar.component';
+import { DetailComponent } from './pages/home/detail/detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,9 @@ import { BlueComponent } from './pages/shared/component/blue/blue.component';
     ControleAccesComponent,
     HomeComponent,
     BlueComponent,
+    SidebarComponent,
+    DetailComponent,
+    SafePipe,
   ],
   imports: [
     CommonModule,
@@ -43,6 +52,9 @@ import { BlueComponent } from './pages/shared/component/blue/blue.component';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatSliderModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

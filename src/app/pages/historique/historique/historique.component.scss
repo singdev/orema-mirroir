@@ -12,14 +12,14 @@
     justify-content: flex-end;
     padding: 1rem;
     margin: 0;
+    flex-wrap: wrap;
     
     button {
       border: 2px solid variable.$color-gray;
-      font-size: 13px;
       padding: 0.1rem 1rem;
       border-radius: 30px;
-      margin-right: 1rem;
       background-color: transparent;
+      margin: 0.5rem;
     }
     
     .active {

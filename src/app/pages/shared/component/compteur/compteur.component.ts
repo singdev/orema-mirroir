@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AlimentationService } from 'src/app/services/alimentation.service';
+import { SettingService } from 'src/app/services/setting.service';
 
 @Component({
   selector: 'app-compteur',
@@ -9,17 +10,37 @@ import { AlimentationService } from 'src/app/services/alimentation.service';
 export class CompteurComponent implements OnInit {
 
   compteurPower: boolean = false;
-  
-  constructor(private alimentationService: AlimentationService) { }
+  unite: number;
+  numeroCompteur: string;
+  loading:boolean  = true;
+
+  constructor(private alimentationService: AlimentationService, private setting: SettingService) { }
 
   ngOnInit(): void {
-    this.checkPower();
+    if(this.load()){
+      this.checkPower();
+    }
   }
   
-  checkPower(){
-    this.alimentationService.isAllumer().subscribe(isAllumer => {
-      this.compteurPower = isAllumer;
-      console.log(this.compteurPower);
-    } )
+  load(){
+    const meter_id = this.setting.getMeterId();
+    const puissance = this.setting.getPuissance();
+    this.unite = Number.parseFloat(this.setting.getPuissance()) / 10;
+    if(puissance == null || puissance == ""){
+      this.unite = 0;
+    }
+    return meter_id != "" && meter_id != null;
   }
+
+  checkPower() {
+    this.alimentationService.isAllumer().subscribe(async (isAllumer) => {
+      const informations = await this.alimentationService.getInformations();
+      if(informations){
+        this.unite = informations.Solde;
+        this.numeroCompteur = informations.NumCompteur;
+        this.loading = false; 
+      }
+    });
+  }
+  
 }

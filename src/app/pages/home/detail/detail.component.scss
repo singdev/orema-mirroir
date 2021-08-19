@@ -1,0 +1,13 @@
+
+p {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 0.8em;
+  
+  span {
+    color: #777;
+  }
+}

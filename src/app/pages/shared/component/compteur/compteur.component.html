@@ -1,9 +1,11 @@
 <div class="compteur-wrapper">
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   <div [ngClass]='{ off: compteurPower, "unite-container": true}'>
-    <h1>93.3 kWh <span>Unité</span></h1>
+    <h1>{{unite}} kWh <span>Unité</span></h1>
   </div>
   <div class="compteur-container">
-    <p>007812356658 <span>N° Compteur</span>
+    <p>{{numeroCompteur}}<span>N° Compteur</span>
     </p>
+    <span class="more-btn" [routerLink]="['/window', 'detail']">+</span>
   </div>
 </div>

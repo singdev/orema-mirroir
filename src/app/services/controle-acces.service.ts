@@ -19,8 +19,6 @@ export class ControleAccesService {
     if (token != null) {
       const now = new Date();
       const expireAt = new Date(token);
-      console.log(expireAt.toTimeString());
-      console.log(now.toTimeString());
       const compare = now.getTime() < expireAt.getTime();
       return compare;
     } else {

@@ -4,7 +4,8 @@
   </div>
   
   <div class="window-content">
-    <div id="map"></div>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+    <iframe *ngIf='mapScr != null' refreshable="true" id="map" [src]='mapScr | safe'  height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
   
   <div class="window-footer">

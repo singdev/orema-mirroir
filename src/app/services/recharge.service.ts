@@ -1,9 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { delay} from 'rxjs/operators';
+import { RechargeContrat } from '../model/contrat/RechargeContrat';
 import { RechargeHistorique } from '../model/recharge-historique';
 import { RechargeResult } from '../model/recharge-result';
+import { SettingService } from './setting.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,41 +11,63 @@ import { RechargeResult } from '../model/recharge-result';
 export class RechargeService {
 
   private FAKE_DB_KEY = 'historique_recharge_key';
-  
-  constructor() { }
-  
-  requestRecharge(montant: number, token: number): Observable<RechargeResult> {
-    if(isNaN(montant) || montant < 2000){
-      return of(new RechargeResult("Montant insuffisant (Minimum 2000 FCFA)", false ));
+
+  constructor(private http: HttpClient, private setting: SettingService) { }
+
+  async requestRecharge(montant: number, token: string): Promise<RechargeResult> {
+    try {
+      let meter_id: string = this.setting.getMeterId();
+      if (meter_id != null && meter_id != "") {
+        const sendingToken = token.replace(/ /g, "");
+        console.log(sendingToken);
+        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${sendingToken}`,
+          {}, {
+            headers: {
+              "accept": "*/*"
+            }
+        }).toPromise();
+        console.log(res.toString());
+        return new RechargeResult(res.toString(), true);
+      }
+      return null;
+    } catch (err) {
+      console.log(err);
+      if (err.status == 200) {
+        console.log(err.error.text);
+        return new RechargeResult(err.error.text, true);
+      }
+      return null;
     }
-    if(isNaN(token) || token.toString().length != 20){
-      return of(new RechargeResult("Format du token invalide (20 chiffres)", false ));
-    }
-    const r = Math.floor(Math.random() * 100);
-    const success = r % 2 == 0;
-    const message = success ? "Token accepté" : "Token invalide";
-    if(success){
-      const date = new Date();
-      this.fakeDatabasePersistRecharge(new RechargeHistorique(montant, token, date.toString()));
-    }
-    return  new Observable((observer) => {
-      observer.next(new RechargeResult(message, success ));
-      delay(5000);
-      observer.complete();
-    });
   }
-  
-  getRecharges(): Observable<Array<RechargeHistorique>>{
-    const savedRecharge = localStorage.getItem(this.FAKE_DB_KEY);
-    const recharges = savedRecharge == null ? [] : JSON.parse(savedRecharge);
-    return of(recharges);
+
+  async getRecharges(): Promise<RechargeContrat> {
+    try {
+      let meter_id: string = this.setting.getMeterId();
+      if (meter_id != null && meter_id != "") {
+        const res = await this.http.get(`${SettingService.API_URL}/api/Read/Histrorique?CompteurNumber=${meter_id}`).toPromise();
+        const array = [];
+        res["list"].forEach(a => {
+          const str = a.date.split(" ");
+          const date = new Date(str[0].split("/")[2], str[0].split("/")[1]-1, str[0].split("/")[0], str[1].split(":")[0], str[1].split(":")[1], str[1].split(":")[2], 0)
+          array.push({ "Solde": a.solde, "Date": date.toUTCString(), "token": a.token })
+        })
+        return new RechargeContrat({
+          "NumCompteur": res["numCompteur"],
+          "ListRecharge": array
+        });
+      }
+      return null;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
   }
-  
-  private fakeDatabasePersistRecharge(rechargeHistorique: RechargeHistorique){
+
+  private fakeDatabasePersistRecharge(rechargeHistorique: RechargeHistorique) {
     let historique = JSON.parse(localStorage.getItem(this.FAKE_DB_KEY));
     historique = historique == null ? [] : historique;
     historique.push(rechargeHistorique);
-    localStorage.setItem(this.FAKE_DB_KEY, JSON.stringify(historique)); 
+    localStorage.setItem(this.FAKE_DB_KEY, JSON.stringify(historique));
   }
-  
+
 }
