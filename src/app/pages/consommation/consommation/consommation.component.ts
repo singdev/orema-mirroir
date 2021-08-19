@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsommationTimeStampContrat } from 'src/app/model/contrat/ConsommationTimeStampContrat';
+import { RechargeHistorique } from 'src/app/model/recharge-historique';
 import { ConsommationService } from 'src/app/services/consommation.service';
+import { RechargeService } from 'src/app/services/recharge.service';
 
 declare var google: any;
 
@@ -11,37 +13,38 @@ declare var google: any;
 })
 export class ConsommationComponent implements OnInit {
 
-  consommationHistorique: Array<ConsommationTimeStampContrat> = [];
   
-  constructor(private consommationService: ConsommationService) { }
+  constructor(private consommationService: ConsommationService, private rechargeService: RechargeService) { }
 
   ngOnInit(): void {
     this.onLoad();
   }
 
-  onLoad() {
-    this.consommationService.getHistoriqueConsommation().subscribe(historique => {
-      this.consommationHistorique = historique;
-      google.charts.load('current', { packages: ['corechart', 'line'] });
+  async onLoad() {
+    const historique = await this.rechargeService.getRecharges();
+    const consommations = historique.ListRecharge;
+      console.log(historique);
+      google.charts.load('current', { packages: ['corechart', 'line', 'annotationchart'] });
       google.charts.setOnLoadCallback(() => {
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'X');
         data.addColumn('number', 'Y');
     
         let rows = [];
-        for(let i = 0; i < this.consommationHistorique.length; i++){
+        for(let i = 0; i < consommations.length; i++){
+          const d = new Date(consommations[i].Date);
           rows.push([
-            new Date(this.consommationHistorique[i].Date),
-            this.consommationHistorique[i].Unite
+            d,
+            consommations[i].Solde
           ])
         }
-        
+        console.log(rows);
         data.addRows(rows);
-    
         var options = {
+          interpolateNulls: true,
           hAxis: {
-            title: 'Temps',
-            logScale: true
+            title: 'Date',
+            logScale: true,
           },
           vAxis: {
             title: 'Consommations',
@@ -50,12 +53,15 @@ export class ConsommationComponent implements OnInit {
           colors: ['#a52714']
         };
     
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       });
-    })
   }
 
+  getFormattedDate(d){
+    return d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear() + " " + d.getHours + ":" + d.getMinutes();
+  }
+  
   drawLogScales() {
 
   }

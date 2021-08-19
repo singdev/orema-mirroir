@@ -48,6 +48,13 @@ $orema-mirror-theme: mat-light-theme((
 body {
   min-height: 100vh;
   min-width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 850px){
+  body {
+    overflow: scroll;
+  }
 }
 
 button {
@@ -101,6 +108,5 @@ button:hover {
   display: none;
 }
 
-html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
