@@ -24,6 +24,7 @@ import { DetailComponent } from './pages/home/detail/detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     BlueComponent,
     SidebarComponent,
     DetailComponent,
+    SafePipe,
   ],
   imports: [
     CommonModule,

@@ -10,14 +10,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class RechargeComponent implements OnInit {
 
   montant: number;
-  token: number;
+  token: string;
   loading: boolean = false;
   
   constructor(private rechargeService: RechargeService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.montant = 0;
-    this.token = 0;
+    this.token = "0";
     this.loading = false;
   }
 

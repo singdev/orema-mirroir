@@ -14,7 +14,7 @@ export class RechargeService {
 
   constructor(private http: HttpClient, private setting: SettingService) { }
 
-  async requestRecharge(montant: number, token: number): Promise<RechargeResult> {
+  async requestRecharge(montant: number, token: string): Promise<RechargeResult> {
     try {
       let meter_id: string = this.setting.getMeterId();
       if (meter_id != null && meter_id != "") {
@@ -23,7 +23,7 @@ export class RechargeService {
           strToken = '0' + strToken;
         }
         console.log(strToken);
-        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${strToken}`,
+        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`,
           {}, {
             headers: {
               "accept": "*/*"

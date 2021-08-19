@@ -15,6 +15,7 @@ export class GeolocalisationComponent implements OnInit {
   boitierLat: number;
   boitierLng: number;
   map: any;
+  mapScr: string = null;
   
   loading:boolean  = true;
 
@@ -39,7 +40,8 @@ export class GeolocalisationComponent implements OnInit {
     });
     this.boitierLat = informationGenerales.Latitude;
     this.boitierLng = informationGenerales.Longitude;
-    this.loadMap();
+    //this.loadMap();
+    this.setGoogleMapsView();
   }
   
   async loadGeocalisationBoitier() {
@@ -47,7 +49,8 @@ export class GeolocalisationComponent implements OnInit {
     if(localization){
       this.boitierLat = localization.latitude;
       this.boitierLng = localization.longitude;
-      this.setMapView();
+      //this.setMapView();
+      this.setGoogleMapsView();
       this.loading = false; 
     }
   }
@@ -96,6 +99,12 @@ export class GeolocalisationComponent implements OnInit {
     this.map.getLayers().pop();
     this.map.getLayers().push(vectorLayer);
     this.map.getView().setCenter(ol.proj.fromLonLat([this.boitierLng, this.boitierLat]),)
+  }
+  
+  setGoogleMapsView(){
+    const lat = this.boitierLng;
+    const lng = this.boitierLat;
+    this.mapScr = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15958.852102929153!2d${lat}!3d${lng}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sga!4v1629371304233!5m2!1sfr!2sga" width="600" height="450" style="border:0;"`;
   }
 
 }
