@@ -18,12 +18,9 @@ export class RechargeService {
     try {
       let meter_id: string = this.setting.getMeterId();
       if (meter_id != null && meter_id != "") {
-        let strToken = token.toString();
-        while(strToken.length < 20) {
-          strToken = '0' + strToken;
-        }
-        console.log(strToken);
-        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${token}`,
+        const sendingToken = token.replace(/ /g, "");
+        console.log(sendingToken);
+        const res = await this.http.post(`${SettingService.API_URL}/api/Read/Recharge?CompteurNumber=${meter_id}&Token=${sendingToken}`,
           {}, {
             headers: {
               "accept": "*/*"
