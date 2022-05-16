@@ -20,7 +20,7 @@ export class GeolocalisationComponent implements OnInit {
   mapStyle = "mapbox://styles/mapbox/satellite-v9";
   mapScr: string = null;
   marker: mapboxgl.Marker;
-  mapboxAccessToken = "pk.eyJ1Ijoibmlja2V6ZWtpYXMiLCJhIjoiY2tndnFsM2hkMDJ4czM2cW16ajV3dXY4eCJ9.6yqYNQSaXhGieOf8p3_CKw";
+  mapboxAccessToken = "pk.eyJ1Ijoib3JlbWF0ZWNoIiwiYSI6ImNsMzdnaDBkdjBveGsza251Y2VjcXh5azQifQ.B5po0VM2_5w1ThYCVMoNEg";
   
   loading:boolean  = true;
 
